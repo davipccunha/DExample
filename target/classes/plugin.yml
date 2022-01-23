@@ -1,0 +1,26 @@
+name: DExample
+version: '1.0.0'
+main: io.github.davipccunha.dexample.ExamplePlugin
+api-version: 1.18
+authors: [ davipccunha ]
+description: Example plugin to learn Bukkit basics
+website: github.com/davipccunha
+depend:
+  - AguiarLib
+commands:
+  hungry:
+    description: "Cesta básica"
+    aliases:
+      - food
+  fly:
+    description: "voa e desvoa"
+    aliases:
+      - voar
+  enderchest:
+    description: "mochila"
+    aliases:
+      - ec
+  kit:
+    description: "kits"
+    aliases:
+      - kits

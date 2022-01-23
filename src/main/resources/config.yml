@@ -1,0 +1,10 @@
+message: "&5Comida!"
+foodLevel: 20
+
+kit:
+  madeira:
+    icon: '270:0'
+    slot: 13
+    items:
+      - '310:0 1'
+      - '311:0 1'

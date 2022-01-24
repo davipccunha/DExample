@@ -5,10 +5,8 @@ import io.github.davipccunha.dexample.models.Kit;
 import me.pedro.aguiar.library.builder.item.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class KitLoader {

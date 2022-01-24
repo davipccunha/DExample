@@ -10,5 +10,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     private void onPlayerJoin(PlayerJoinEvent event) {
         event.setJoinMessage(ChatColor.GOLD + event.getPlayer().getName() + " entrou!");
+
+
     }
 }

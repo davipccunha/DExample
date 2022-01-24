@@ -1,26 +1,29 @@
 package io.github.davipccunha.dexample;
 
 import io.github.davipccunha.dexample.cache.KitCache;
-import io.github.davipccunha.dexample.commands.EnderChestCommand;
-import io.github.davipccunha.dexample.commands.FlyCommand;
-import io.github.davipccunha.dexample.commands.HungryCommand;
-import io.github.davipccunha.dexample.commands.KitCommand;
+import io.github.davipccunha.dexample.commands.*;
 import io.github.davipccunha.dexample.inventories.KitGUI;
 import io.github.davipccunha.dexample.listeners.*;
 import io.github.davipccunha.dexample.loaders.KitLoader;
+import io.github.davipccunha.dexample.loaders.NoteLoader;
+import io.github.davipccunha.dexample.utils.NoteManagementUtil;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.FileNotFoundException;
 
 @Getter
 public final class ExamplePlugin extends JavaPlugin {
 
     private final KitCache cache = new KitCache();
     private final KitGUI gui = new KitGUI(this);
+    private final NoteManagementUtil noteManagement = new NoteManagementUtil(this);
 
-
+    @SneakyThrows
     @Override
     public void onEnable() {
         Bukkit.getLogger().info("QUÉ TIRA LADRÃO");
@@ -33,12 +36,13 @@ public final class ExamplePlugin extends JavaPlugin {
         HandlerList.unregisterAll(this);
     }
 
-    private void init() {
+    private void init() throws FileNotFoundException {
         saveDefaultConfig();
 
         initListeners();
         initCommands();
         loadKits();
+        loadNotes();
     }
 
     private void initListeners() {
@@ -51,7 +55,9 @@ public final class ExamplePlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerBedEnterListener(), this);
         pluginManager.registerEvents(new PlayerEggThrowListener(), this);
         pluginManager.registerEvents(new InventoryClickListener(this), this);
-        pluginManager.registerEvents(new BlockPlaceListener(this), this);
+        pluginManager.registerEvents(new BlockPlaceListener(), this);
+        pluginManager.registerEvents(new PlayerDropItemListener(), this);
+        pluginManager.registerEvents(new PlayerItemDamageListener(), this);
     }
 
     private void initCommands() {
@@ -59,10 +65,16 @@ public final class ExamplePlugin extends JavaPlugin {
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("enderchest").setExecutor(new EnderChestCommand());
         getCommand("kit").setExecutor(new KitCommand(this));
+        getCommand("note").setExecutor(new NoteCommand(this));
     }
 
     private void loadKits() {
         KitLoader kitLoader = new KitLoader();
         kitLoader.load(this);
+    }
+
+    private void loadNotes() throws FileNotFoundException {
+        NoteLoader noteLoader = new NoteLoader();
+        noteLoader.load(this);
     }
 }

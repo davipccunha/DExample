@@ -1,6 +1,5 @@
 package io.github.davipccunha.dexample.listeners;
 
-import io.github.davipccunha.dexample.ExamplePlugin;
 import io.github.davipccunha.dexample.models.BlockConfirmation;
 import lombok.RequiredArgsConstructor;
 import me.pedro.aguiar.library.builder.inventory.InventoryBuilder;
@@ -19,8 +18,6 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 public class BlockPlaceListener implements Listener {
-
-    private final ExamplePlugin instance;
 
     private final Map<Player, BlockConfirmation> confirmations = new HashMap<>();
 

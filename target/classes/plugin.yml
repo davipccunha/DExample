@@ -24,3 +24,5 @@ commands:
     description: "kits"
     aliases:
       - kits
+  note:
+    description: "notes"

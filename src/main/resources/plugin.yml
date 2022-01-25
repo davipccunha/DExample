@@ -26,3 +26,5 @@ commands:
       - kits
   note:
     description: "notes"
+  sign:
+    description: "escreve na placa"

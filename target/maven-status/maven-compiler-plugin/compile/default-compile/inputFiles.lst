@@ -1,6 +1,7 @@
 D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\commands\NoteCommand.java
 D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\commands\HungryCommand.java
 D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\listeners\PlayerQuitListener.java
+D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\commands\SignCommand.java
 D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\loaders\NoteLoader.java
 D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\ExamplePlugin.java
 D:\IntelliJ Projects\DExample\src\main\java\io\github\davipccunha\dexample\listeners\EntityDeathListener.java

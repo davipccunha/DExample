@@ -66,6 +66,7 @@ public final class ExamplePlugin extends JavaPlugin {
         getCommand("enderchest").setExecutor(new EnderChestCommand());
         getCommand("kit").setExecutor(new KitCommand(this));
         getCommand("note").setExecutor(new NoteCommand(this));
+        getCommand("sign").setExecutor(new SignCommand(this));
     }
 
     private void loadKits() {

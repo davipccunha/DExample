@@ -4,6 +4,7 @@ io\github\davipccunha\dexample\commands\EnderChestCommand.class
 io\github\davipccunha\dexample\loaders\KitLoader.class
 io\github\davipccunha\dexample\commands\NoteCommand.class
 io\github\davipccunha\dexample\listeners\PlayerEggThrowListener.class
+io\github\davipccunha\dexample\commands\SignCommand.class
 io\github\davipccunha\dexample\loaders\NoteLoader.class
 io\github\davipccunha\dexample\commands\KitCommand.class
 io\github\davipccunha\dexample\listeners\EntityDeathListener.class

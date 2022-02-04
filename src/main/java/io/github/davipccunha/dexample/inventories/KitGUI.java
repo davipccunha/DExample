@@ -14,7 +14,7 @@ public class KitGUI {
     public void open(Player player) {
         final Inventory inventory = Bukkit.createInventory(null, 9 * 3, "§8Kits");
 
-        instance.getCache().values().forEach(kit -> inventory.setItem(kit.getSlot(), kit.getIcon()));
+        instance.getKitCache().values().forEach(kit -> inventory.setItem(kit.getSlot(), kit.getIcon()));
 
         player.openInventory(inventory);
     }

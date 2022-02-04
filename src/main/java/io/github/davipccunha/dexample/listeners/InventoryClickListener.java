@@ -5,7 +5,6 @@ import io.github.davipccunha.dexample.models.Kit;
 import lombok.RequiredArgsConstructor;
 import me.pedro.aguiar.library.builder.inventory.InventoryBuilder;
 import me.pedro.aguiar.library.builder.item.ItemBuilder;
-import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,7 +36,7 @@ public class InventoryClickListener implements Listener {
 
         final String name = itemBuilder.getNbt("kit-id");
 
-        final Kit kit = instance.getCache().get(name);
+        final Kit kit = instance.getKitCache().get(name);
         if (kit == null) return;
 
         if (event.getClick().isLeftClick()) {

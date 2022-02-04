@@ -36,7 +36,7 @@ public class KitLoader {
             itemBuilder.setLore("§7- Clique com o esquerdo para coletar", "§7- Clique com o direito para ver o conteúdo");
             itemBuilder.addNbt("kit-id", kit);
 
-            instance.getCache().put(kit, new Kit(items.toArray(ItemStack[]::new),
+            instance.getKitCache().put(kit, new Kit(items.toArray(ItemStack[]::new),
                     itemBuilder.build(), instance.getConfig().getInt("kit." + kit + ".slot")));
         });
     }

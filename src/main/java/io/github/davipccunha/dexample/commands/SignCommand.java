@@ -49,6 +49,7 @@ public class SignCommand implements CommandExecutor {
 
             player.sendMessage(ChatColor.GOLD + message);
         });
+
         return false;
     }
 }

@@ -1,7 +1,10 @@
 package io.github.davipccunha.dexample;
 
+import io.github.davipccunha.dexample.cache.EconomyUserCache;
 import io.github.davipccunha.dexample.cache.KitCache;
 import io.github.davipccunha.dexample.commands.*;
+import io.github.davipccunha.dexample.database.impl.EconomyDatabaseImpl;
+import io.github.davipccunha.dexample.database.services.EconomyDatabaseService;
 import io.github.davipccunha.dexample.inventories.KitGUI;
 import io.github.davipccunha.dexample.listeners.*;
 import io.github.davipccunha.dexample.loaders.KitLoader;
@@ -19,14 +22,19 @@ import java.io.FileNotFoundException;
 @Getter
 public final class ExamplePlugin extends JavaPlugin {
 
-    private final KitCache cache = new KitCache();
+    private EconomyDatabaseService economyDatabaseService;
+
+    private final EconomyUserCache economyUserCache = new EconomyUserCache();
+
+    private final KitCache kitCache = new KitCache();
     private final KitGUI gui = new KitGUI(this);
+
     private final NoteManagementUtil noteManagement = new NoteManagementUtil(this);
 
     @SneakyThrows
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info("QUÉ TIRA LADRÃO");
+        Bukkit.getLogger().info("ligou");
         init();
     }
 
@@ -34,10 +42,16 @@ public final class ExamplePlugin extends JavaPlugin {
     public void onDisable() {
         System.out.println("puts desligou");
         HandlerList.unregisterAll(this);
+
+        economyUserCache.values().forEach(economyUser -> economyDatabaseService.getUserService().saveUser(economyUser));
+
+        this.economyDatabaseService.disconnect();
     }
 
     private void init() throws FileNotFoundException {
         saveDefaultConfig();
+
+        initDatabases();
 
         initListeners();
         initCommands();
@@ -58,6 +72,7 @@ public final class ExamplePlugin extends JavaPlugin {
         pluginManager.registerEvents(new BlockPlaceListener(), this);
         pluginManager.registerEvents(new PlayerDropItemListener(), this);
         pluginManager.registerEvents(new PlayerItemDamageListener(), this);
+        pluginManager.registerEvents(new PlayerDataListener(this), this);
     }
 
     private void initCommands() {
@@ -67,6 +82,8 @@ public final class ExamplePlugin extends JavaPlugin {
         getCommand("kit").setExecutor(new KitCommand(this));
         getCommand("note").setExecutor(new NoteCommand(this));
         getCommand("sign").setExecutor(new SignCommand(this));
+
+        new CoinsCommand(this);
     }
 
     private void loadKits() {
@@ -77,5 +94,9 @@ public final class ExamplePlugin extends JavaPlugin {
     private void loadNotes() throws FileNotFoundException {
         NoteLoader noteLoader = new NoteLoader();
         noteLoader.load(this);
+    }
+
+    private void initDatabases() {
+        this.economyDatabaseService = new EconomyDatabaseImpl(this);
     }
 }
